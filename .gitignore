@@ -1,0 +1,5 @@
+advanced-rest-client
+node_modules
+.env
+arc-setup.exe
+mongodb.msi

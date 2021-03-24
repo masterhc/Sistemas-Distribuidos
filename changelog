@@ -1,5 +1,0 @@
-dependencies:
- - ejs
- - express
- - request
- - cheerio
