@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 //schema
 var bioSchema = mongoose.Schema({
-    nome: {
+    name: {
         type: String,
         required: true
     },
@@ -10,11 +10,11 @@ var bioSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    telef: {
+    cellphone: {
         type: String,
         required: true
     },
-    morada: {
+    address: {
         type: String,
         required: true
     },

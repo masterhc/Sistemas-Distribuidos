@@ -25,10 +25,10 @@ exports.index = (req, res)=>
 exports.add = (req, res)=>
 {
     var bio = new Bio();
-    bio.nome = req.body.nome? req.body.nome: bio.nome;
+    bio.name = req.body.name? req.body.name: bio.name;
     bio.email = req.body.email;
-    bio.telef = req.body.telef;
-    bio.morada = req.body.morada;
+    bio.cellphone = req.body.cellphone;
+    bio.address = req.body.address;
 
     //Saving and error checking
     bio.save((err)=>
@@ -60,19 +60,25 @@ exports.update = (req, res)=>
     Bio.findById(req.params.bio_id, (err, bio)=>
     {
         if (err) res.send(err);
-        bio.nome = req.body.nome ? req.body.nome : bio.nome;
+        bio.name = req.body.name ? req.body.name : bio.name;
         bio.email = req.body.email;
-        bio.telef = req.body.telef;
-        bio.morada = req.body.morada;
-
+        bio.cellphone = req.body.cellphone;
+        bio.address = req.body.address;
         //Saving and checking errors
         bio.save((err)=>
         {
             if (err) res.json(err)
-            res.json({
-                message: "Bio Updated Successfully",
-                data: bio
-            });
+            try
+            {
+                res.json({
+                    message: "Bio Updated Successfully",
+                    data: bio
+                });
+            }
+            catch (e)
+            {
+                console.log('There was an error and it couldnt send anymore headers',e)
+            }
         });
     });
 };
@@ -80,9 +86,7 @@ exports.update = (req, res)=>
 //Delete Bio
 exports.delete = (req, res)=>
 {
-    Bio.deleteOne({
-        _id: req.params.bio_id
-    }, (err, contact)=>
+    Bio.deleteOne({_id: req.params.bio_id}, (err)=>
     {
         if (err) res.send(err)
         res.json({
