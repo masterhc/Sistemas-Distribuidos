@@ -4,7 +4,10 @@ const controller = require('../controllers/controller');
 //API HOME
 router.get('/', (req, res)=>
 {
-    res.send('API WORKING');
+    res.json({
+        status:'Working',
+        message:'The API is working.'
+    })
 });
 
 // Terrace routes
