@@ -16,6 +16,7 @@ app.use('/api', require("./routes/route"))
 
 
 //FILL DB
+//Adicionar os dados sozinho à bd.
 async function fillDB() 
 {
     try 
