@@ -6,10 +6,6 @@ var casesSchema = mongoose.Schema({
         type: Object,
         required: true
     },
-    confirmed: {
-        type: Object,
-        required: true
-    },
     newConfirmed: {
         type: Object,
         required: true

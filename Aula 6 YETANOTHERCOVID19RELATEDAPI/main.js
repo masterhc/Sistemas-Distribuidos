@@ -2,7 +2,7 @@ let bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const app = require('express')();
 const got = require('got');
-Model = require('./models/model')
+Model = require('./models/model');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
@@ -24,18 +24,17 @@ async function fillDB()
         const res = await got('https://covid19-api.vost.pt/Requests/get_entry/29-03-2021_until_04-04-2021');
         let body = JSON.parse(res.body);
         var model = new Model();
-        // model.Date = body.data;
-        // model.confirmed = body.confirmados;
-        // model.newConfirmed = body.confirmados_novos;
-        // model.intensiveCare = body.internados_uci;
-        // model.save((err)=>
-        // {
-        //     if (err) console.log(err);
-        //     else
-        //     {
-        //         console.log('Data ADDED')
-        //     }
-        // });
+        model.Date = body.data;
+        model.newConfirmed = body.confirmados_novos;
+        model.intensiveCare = body.internados_uci;
+        model.save((err)=>
+        {
+            if (err) console.log(err);
+            else
+            {
+                console.log('Data ADDED')
+            }
+        });
     } catch (e) 
     {
         console.log(e);    
