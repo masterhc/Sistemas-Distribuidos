@@ -5,7 +5,7 @@ export class Todo extends Entity {
   @property({
     type: 'string',
     id: true,
-    generated: true,
+    generated: false,
   })
   id?: string;
 
@@ -23,9 +23,9 @@ export class Todo extends Entity {
 
   @property({
     type: 'boolean',
-    required: true,
+    default: false,
   })
-  isDone: boolean;
+  isDone?: boolean;
 
 
   constructor(data?: Partial<Todo>) {
