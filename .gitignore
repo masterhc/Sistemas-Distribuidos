@@ -3,3 +3,5 @@ node_modules
 .env
 arc-setup.exe
 mongodb.msi
+loopback-next
+file-transfer

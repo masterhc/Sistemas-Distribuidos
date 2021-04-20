@@ -23,7 +23,8 @@ export {ApplicationConfig};
 export class TodomdbApplication extends BootMixin(
   ServiceMixin(RepositoryMixin(RestApplication)),
 ) {
-  constructor(options: ApplicationConfig = {}) {
+  constructor(options: ApplicationConfig = {}) 
+  {
     super(options);
 
     // Set up the custom sequence
@@ -44,7 +45,8 @@ export class TodomdbApplication extends BootMixin(
     this.dataSource(TodoDataSource, UserServiceBindings.DATASOURCE_NAME);    
     this.projectRoot = __dirname;
     // Customize @loopback/boot Booter Conventions here
-    this.bootOptions = {
+    this.bootOptions = 
+    {
       controllers: {
         // Customize ControllerBooter Conventions here
         dirs: ['controllers'],
