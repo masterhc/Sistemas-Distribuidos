@@ -1,0 +1,213 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Calculator API",
+      "description": "Basic Arithmetic Calculator API.",
+      "version": "1.0.1"
+    },
+    "host": "localhost:5000",
+    "basePath": "/",
+    "components":
+    {
+        "schemas":
+        {
+            "Response":
+            {
+                "type": "object",
+                "properties":
+                {
+                    "status":{"type":"string"},
+                    "restult":{"type":"string"}
+                }
+            }
+        }
+    },
+    "paths":
+    {
+        "/api/calc/sum/{num1}/{num2}":
+        {
+            "get":
+            {
+                "description":"Returns the sum of the two provided values.",
+                "tags":["Calculator"],
+                "parameters":
+                [
+                    {
+                        "name":"num1",
+                        "in": "path",
+                        "description":"1st Number",
+                        "required":"true",
+                        "schema":{"type":"string"}
+                    },
+                    {
+                        "name":"num2",
+                        "in": "path",
+                        "description":"2nd Number",
+                        "required":"true",
+                        "schema":{"type":"string"}
+                    }
+                ],
+                "responses":
+                {
+                    "200":
+                    {
+                        "descripion":"The sum was successfull.",
+                        "content":
+                        {
+                            "application/json":
+                            {
+                                "schema":
+                                {
+                                    "$ref": "#/components/schemas/Response"
+                                }
+                            }
+                        }
+                    },
+                    "404":
+                    {
+                        "description":"There was an error"
+                    }
+                }
+            }
+        },
+        "/api/calc/sub/{num1}/{num2}":
+        {
+            "get":
+            {
+                "description":"Returns the subtraction of the two provided values. (1st minus the 2nd)",
+                "tags":["Calculator"],
+                "parameters":
+                [
+                    {
+                        "name":"num1",
+                        "in": "path",
+                        "description":"1st Number",
+                        "required":"true",
+                        "schema":{"type":"string"}
+                    },
+                    {
+                        "name":"num2",
+                        "in": "path",
+                        "description":"2nd Number",
+                        "required":"true",
+                        "schema":{"type":"string"}
+                    }
+                ],
+                "responses":
+                {
+                    "200":
+                    {
+                        "descripion":"The subtraction was successfull.",
+                        "content":
+                        {
+                            "application/json":
+                            {
+                                "schema":
+                                {
+                                    "$ref": "#/components/schemas/Response"
+                                }
+                            }
+                        }
+                    },
+                    "404":
+                    {
+                        "description":"There was an error"
+                    }
+                }
+            }
+        },
+        "/api/calc/div/{num1}/{num2}":
+        {
+            "get":
+            {
+                "description":"Returns the division of the two provided values.(1st divided by the second)",
+                "tags":["Calculator"],
+                "parameters":
+                [
+                    {
+                        "name":"num1",
+                        "in": "path",
+                        "description":"1st Number",
+                        "required":"true",
+                        "schema":{"type":"string"}
+                    },
+                    {
+                        "name":"num2",
+                        "in": "path",
+                        "description":"2nd Number",
+                        "required":"true",
+                        "schema":{"type":"string"}
+                    }
+                ],
+                "responses":
+                {
+                    "200":
+                    {
+                        "descripion":"The division was successfull.",
+                        "content":
+                        {
+                            "application/json":
+                            {
+                                "schema":
+                                {
+                                    "$ref": "#/components/schemas/Response"
+                                }
+                            }
+                        }
+                    },
+                    "404":
+                    {
+                        "description":"There was an error"
+                    }
+                }
+            }
+        },
+        "/api/calc/mul/{num1}/{num2}":
+        {
+            "get":
+            {
+                "description":"Returns the product of the two provided values.",
+                "tags":["Calculator"],
+                "parameters":
+                [
+                    {
+                        "name":"num1",
+                        "in": "path",
+                        "description":"1st Number",
+                        "required":"true",
+                        "schema":{"type":"string"}
+                    },
+                    {
+                        "name":"num2",
+                        "in": "path",
+                        "description":"2nd Number",
+                        "required":"true",
+                        "schema":{"type":"string"}
+                    }
+                ],
+                "responses":
+                {
+                    "200":
+                    {
+                        "descripion":"The multiplication was successfull.",
+                        "content":
+                        {
+                            "application/json":
+                            {
+                                "schema":
+                                {
+                                    "$ref": "#/components/schemas/Response"
+                                }
+                            }
+                        }
+                    },
+                    "404":
+                    {
+                        "description":"There was an error"
+                    }
+                }
+            }
+        }
+    }
+
+}
