@@ -16,8 +16,6 @@ exports.add = (req, res) =>
     U.name = req.body.name;
     U.hash = req.body.address;
     U.email = req.body.menu;
-    U.cellphone = 
-    U.
     U.save((err)=>
     {
         if (err) res.json(err);
