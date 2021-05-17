@@ -14,8 +14,8 @@ new Schema(
 
 
 
-const Vac = module.exports = mongoose.model('Vaccine', vaccine);
 
+const Vac = module.exports = mongoose.model('Vaccine', vaccine);
 module.exports.get = (callback, limit)=>
 {
    Vac.find(callback).limit(limit); 

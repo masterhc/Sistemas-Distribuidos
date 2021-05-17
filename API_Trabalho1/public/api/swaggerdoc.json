@@ -3,7 +3,7 @@
     "info": {
       "title": "Vaccination API",
       "description": "For an app that would alert you if you were to pass by a person that wasn't vaccinated. While also being able to provide you with a status on how vacinnation is going. By the voluntary insertion of data.",
-      "version": "0.0.8"
+      "version": "0.0.9"
     },
     
     "host": "localhost:5000",
@@ -15,6 +15,9 @@
     [
       {
         "name":"Vaccine"
+      },
+      {
+        "name":"Account"
       }
     ],
     "components":
@@ -57,6 +60,36 @@
               }            
             }
           }
+        },
+        "response_body_ip":
+        {
+          "type":"object",
+          "properties":
+          {
+            "status":{"type":"string"},
+            "message":{"type":"string"},
+            "body":
+            {
+              "type":"array",
+              "items":
+              {
+                "type":"object",
+                "properties":
+                {
+                  "NIC":
+                  {
+                    "type":"array",
+                    "items":
+                    {
+                      "name":"IP",
+                      "type":"string"
+                    }
+                  }
+                  
+                }
+              }
+            }
+          }
         }
         
       }
@@ -68,6 +101,7 @@
         "post":
         {
           "description":"Returns a validation.",
+          "summary":"Needs Authentication.", 
           "tags":["Vaccine"],
           "requestBody":
           {
@@ -119,6 +153,7 @@
         "get":
         {
           "description":"Returns the vaccinated state and date of vaccination (if applicable) of the given ID.",
+          "summary":"Needs Authentication.",
           "tags":["Vaccine"],
           "parameters":
           [
@@ -171,6 +206,7 @@
         "get":
         {
           "description":"Total of vaccines on the day of the request up to the time of request.",
+          "summary":"Needs Authentication.",
           "tags":["Vaccine"],
           "responses":
           {
@@ -211,6 +247,7 @@
         "get":
         {
           "description":"Total of registed vaccinations.",
+          "summary":"Needs Authentication.",
           "tags":["Vaccine"],
           "responses":
           {
@@ -250,6 +287,7 @@
         "get":
         {
           "description":"Total of registed natural recoveries.",
+          "summary":"Needs Authentication.",
           "tags":["Recovered"],
           "responses":
           {
@@ -262,7 +300,7 @@
                 {
                   "schema":
                   {
-                    "$ref":"#/components/schemas/response"
+                    "$ref":"#/components/schemas/response_body"
                   }
                 }
               }
@@ -289,6 +327,7 @@
         "get":
         {
           "description":"Total of vaccines on a given day.",
+          "summary":"Needs Authentication.",
           "tags":["Vaccine"],
           "parameters":
           [
@@ -360,6 +399,7 @@
         "get":
         {
           "description":"All time avarage of vaccines per day.",
+          "summary":"Needs Authentication.",
           "tags":["Vaccine"],
           "responses":
           {
@@ -411,7 +451,7 @@
                   {
                     "schema":
                     {
-                      "$ref":"#/components/schemas/response"
+                      "$ref":"#/components/schemas/response_body_ip"
                     }
                   }
                 }
@@ -438,6 +478,7 @@
         "get":
         {
           "description":"All time avarege of dosage. (0 to 2)",
+          "summary":"Needs Authentication.",
           "tags":["Vaccine"],
           "responses":
           {
@@ -478,6 +519,7 @@
         "post":
         {
           "description":"Updates dosage of a user. Second dose to true.",
+          "summary":"Needs Authentication.",
           "tags":["Vaccine"],
           "parameters":
           [
@@ -531,6 +573,158 @@
             }
           }
         }
+      },
+      "/api/register/{username}/{password}":
+      {
+        "post":
+        {
+          "description":"Register a new Account",
+          "tags":["Account"],
+          "parameters":
+          [
+            {
+              "name":"user",
+              "in":"path",
+              "required":"true",
+              "schema":{"type":"string"},
+              "description":"Username"
+            },
+            {
+              "name":"pw",
+              "in":"path",
+              "required":"true",
+              "schema":{"type":"string"},
+              "description":"Password"
+            }
+          ],
+          "responses":
+          {
+            "200":
+            {
+              "description":"Success",
+              "content":
+              {
+                "application/json":
+                {
+                  "schema":
+                  {
+                    "$ref":"#/components/schemas/response"
+                  }
+                }
+              }
+            },
+            "400":
+            {
+              "description":"Error",
+              "content":
+              {
+                "application/json":
+                {
+                  "schema":
+                  {
+                    "$ref":"#/components/schemas/response"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/login/{username}/{password}":
+      {
+        "post":
+        {
+          "description":"Log in to yor account",
+          "tags":["Account"],
+          "parameters":
+          [
+            {
+              "name":"user",
+              "in":"path",
+              "required":"true",
+              "schema":{"type":"string"},
+              "description":"Username"
+            },
+            {
+              "name":"pw",
+              "in":"path",
+              "required":"true",
+              "schema":{"type":"string"},
+              "description":"Password"
+            }
+          ],
+          "responses":
+          {
+            "200":
+            {
+              "description":"Sucess",
+              "content":
+              {
+                "application/json":
+                {
+                  "schema":
+                  {
+                    "$ref":"#/components/schemas/response"
+                  }
+                }
+              }
+            },
+            "400":
+            {
+              "description":"Error",
+              "content":
+              {
+                "application/json":
+                {
+                  "schema":
+                  {
+                    "$ref":"#/components/schemas/response"
+                  }
+                }
+              }
+            }
+          }
+        }
+
+      },
+      "/api/logout":
+      {
+          "get":
+          {
+            "description":"Logout",
+            "tags":["Account"],
+            "responses":
+            {
+              "200":
+              {
+                "description":"Loged Out",
+                "content":
+                {
+                  "application/json":
+                  {
+                    "schema":
+                    {
+                      "$ref":"#/components/schemas/response"
+                    }
+                  }
+                }
+              },
+              "400":
+              {
+                "description":"Error",
+                "content":
+                {
+                  "application/json":
+                  {
+                    "schema":
+                    {
+                      "$ref":"#/components/schemas/response"
+                    }
+                  }
+                }
+              }
+            }
+          }
       }
 
     }
