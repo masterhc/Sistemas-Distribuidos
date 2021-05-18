@@ -479,6 +479,7 @@ function readableDay(day, month, year)
  * @param {Date} day 
  * @returns - Vaccines
  */
+
 function totals (day, range)
 {
     return new Promise ((resolve, reject)=>
